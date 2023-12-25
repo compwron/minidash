@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>skep-dashboard</title>
+</head>
+<body>
+<button id="check-emails">Check Unread Emails</button>
+<div id="email-count">Unread Emails: <span id="count">-</span></div>
+
+<script>
+    document.getElementById('check-emails').addEventListener('click', function () {
+        fetch('http://localhost:3000/unread-emails')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('count').textContent = data.unreadCount;
+            })
+            .catch(error => console.error('Error:', error));
+    });
+</script>
+</body>
+</html>
